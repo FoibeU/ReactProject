@@ -1,0 +1,46 @@
+/* Set background color for the entire page */
+body {
+    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Custom background for BookList */
+  .book-list-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style for book items */
+  .book-item {
+    background-color: #fafafa;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+  }
+  
+  .book-item:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Search bar styling */
+  .search-bar {
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Filters and Sort options container */
+  .filters-sort-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
