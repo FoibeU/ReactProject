@@ -9,7 +9,7 @@ interface BookItemProps {
     genre: string; 
     rating: number; 
     publicationDate: string; 
-    // Dynamically passed image URL
+    
   };
 }
 

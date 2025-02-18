@@ -7,7 +7,7 @@ import SortOptions from "./SortOptions";
 import { useBooks } from "../context/BookContext"; // Import useBooks hook
 
 const BookList = () => {
-  const { books } = useBooks(); // Get books from Context
+  const { books } = useBooks(); // How to Get books from Context 
   
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
