@@ -1,61 +1,45 @@
 import React from "react";
-import { ThemeProvider, createTheme, CssBaseline, Container, Typography, Box, AppBar, Toolbar, Button } from "@mui/material";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { ThemeProvider, createTheme, CssBaseline, Container, Typography, AppBar, Toolbar, Button } from "@mui/material";
 import BookList from "./components/BookList";
-import { BooksProvider } from "./context/BookContext"; // Import BooksProvider
+import BookForm from "./components/BookForm";
+import CreateAccount from "./pages/CreateAccount"; 
+import Login from "./pages/Login"; 
+import { BooksProvider } from "./context/BookContext";
 
 const theme = createTheme({
   palette: {
-    primary: {
-      main: "#1976d2",
-    },
-    secondary: {
-      main: "#dc004e",
-    },
+    primary: { main: "#1976d2" },
+    secondary: { main: "#dc004e" },
   },
 });
 
 const App = () => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <BooksProvider> {/* Wrap the app with BooksProvider */}
-      
-      {/* Navigation Bar */}
-      <AppBar position="sticky" sx={{ backgroundColor: "#123456" }}>
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Book Hub
-          </Typography>
-          <Button color="inherit">Home</Button>
-          <Button color="inherit">Categories</Button>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
+    <BooksProvider>
+      <Router>
+        {/* Navigation Bar */}
+        <AppBar position="sticky" sx={{ backgroundColor: "#123456" }}>
+          <Toolbar>
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              Book Hub
+            </Typography>
+            <Button color="inherit" component={Link} to="/">Home</Button>
+            <Button color="inherit" component={Link} to="/create-account">Create Account</Button>
+            <Button color="inherit" component={Link} to="/login">Login</Button>
+          </Toolbar>
+        </AppBar>
 
-      {/* Welcome Section */}
-      <Box
-        sx={{
-          backgroundImage: "url('https://source.unsplash.com/1600x900/?books,library')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          color: "white",
-          textAlign: "center",
-          padding: "60px 20px",
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
-        }}
-      >
-        <Typography variant="h3" component="h1" fontWeight="bold">
-          Welcome to Book Hub Platform
-        </Typography>
-        <Typography variant="h5" component="p" mt={2}>
-          Discover any book of your need with ease!
-        </Typography>
-      </Box>
-
-      {/* Main Content */}
-      <Container maxWidth="lg" sx={{ marginTop: 4 }}>
-        <BookList />
-      </Container>
-
+        {/* Page Routes */}
+        <Container maxWidth="lg" sx={{ marginTop: 4 }}>
+          <Routes>
+            <Route path="/" element={<><BookForm /><BookList /></>} />
+            <Route path="/create-account" element={<CreateAccount />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Container>
+      </Router>
     </BooksProvider>
   </ThemeProvider>
 );

@@ -14,6 +14,7 @@ type Book = {
 type BooksContextType = {
   books: Book[];
   setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
+  addBook: (newBook: Book) => void; 
 };
 
 // Create Context
@@ -27,14 +28,18 @@ export const BooksProvider = ({ children }: { children: ReactNode }) => {
     { id: 3, title: "Learn by doing", author: "Foibe", genre: "Non-Fiction", rating: 5.0, publicationDate: "2002-05-20" },
     { id: 4, title: "Intermediate", author: "Foibe", genre: "Non-Fiction", rating: 5.0, publicationDate: "2020-10-20" },
     { id: 5, title: "Super Flash", author: "Foibe", genre: "Drama", rating: 3.0, publicationDate: "2021-08-20" },
-    { id: 6, title: "Natural Lee ", author: "Foibe", genre: "Non-Fiction", rating: 5.0, publicationDate: "2000-05-09" },
-    { id: 7, title: "English Fushion", author: "Foibe", genre: "Drama", rating: 3.40, publicationDate: "2009-04-20" },
-    { id: 8, title: "New generations", author: "Foibe", genre: "Drama", rating: 4.50, publicationDate: "2008-09-20", },
-    
+    { id: 5, title: "Super Flash", author: "Foibe", genre: "Drama", rating: 3.0, publicationDate: "2021-08-20" },
+    { id: 5, title: "Super Flash", author: "Foibe", genre: "Drama", rating: 3.0, publicationDate: "2021-08-20" },
+    { id: 5, title: "Super Flash", author: "Foibe", genre: "Drama", rating: 3.0, publicationDate: "2021-08-20" },
   ]);
 
+  //  Function to add a new book 
+  const addBook = (newBook: Book) => {
+    setBooks((prevBooks) => [...prevBooks, newBook]);
+  };
+
   return (
-    <BooksContext.Provider value={{ books, setBooks }}>
+    <BooksContext.Provider value={{ books, setBooks, addBook }}>
       {children}
     </BooksContext.Provider>
   );
