@@ -20,7 +20,7 @@ const BookCard: React.FC<{ title: string; author: string; genre: string }> = ({
         component="div"
         sx={{
           height: 10,
-          backgroundImage: "", // Add dynamic background image URL if needed
+          backgroundImage: "", // Add 
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
