@@ -9,18 +9,21 @@ interface BookItemProps {
     genre: string; 
     rating: number; 
     publicationDate: string; 
-    
+    cover_image_url: string; 
   };
 }
 
 const BookItem: React.FC<BookItemProps> = ({ book }) => {
   return (
     <Card sx={{ maxWidth: 345, marginBottom: 3, position: "relative" }}>
+      {/* CardMedia with cover_image_url */}
       <CardMedia
-        
+        component="img"
+        height="250"
+        image={book.cover_image_url || "default-cover.jpg"} 
+        alt={book.title}
         sx={{
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          objectFit: "cover",
         }}
       />
       <CardContent sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)", color: "white" }}>
@@ -37,7 +40,13 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
           Rating: {book.rating}
         </Typography>
       </CardContent>
-      
+
+     
+      <CardActions sx={{ justifyContent: "flex-end" }}>
+        <Button size="small" color="primary">
+          View Details
+        </Button>
+      </CardActions>
     </Card>
   );
 };

@@ -27,6 +27,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'books',
     'corsheaders',
+    "cloudinary",
+    "cloudinary_storage",
+    "accounts",
+
 ]
 
 MIDDLEWARE = [
@@ -111,3 +115,38 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# settings.py
+
+# Cloudinary configuration
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dnqsvjstg',
+    'API_KEY': '867354622549117',
+    'API_SECRET': 'Md3-HLrRTqTihBrbUbTDhQxgcwY',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# You can also add these to directly configure Cloudinary
+import cloudinary
+cloudinary.config(
+    cloud_name='dnqsvjstg',
+    api_key='867354622549117',
+    api_secret='Md3-HLrRTqTihBrbUbTDhQxgcwY'
+)
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+}
+
+
+AUTH_USER_MODEL = "accounts.CustomUser"

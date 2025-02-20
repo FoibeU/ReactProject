@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { Grid, Box } from "@mui/material";
+import { Grid, Box, Typography } from "@mui/material";
 import BookItem from "./BookItem";
 import Filters from "./Filters";
 import SearchBar from "./SearchBar";
 import SortOptions from "./SortOptions";
-import { useBooks } from "../context/BookContext"; // Import useBooks hook
-
+import { useBooks } from "../context/BookContext"; 
 const BookList = () => {
-  const { books } = useBooks(); // How to Get books from Context 
-  
+  const { books } = useBooks(); 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
   const [sortBy, setSortBy] = useState("rating");
@@ -31,14 +29,20 @@ const BookList = () => {
         <SortOptions sortBy={sortBy} setSortBy={setSortBy} />
       </Box>
       
-      {/* Grid for Book Items */}
-      <Grid container spacing={3}>
-        {filteredBooks.map((book) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={book.id}>
-            <BookItem book={book} />
-          </Grid>
-        ))}
-      </Grid>
+      {/* Show message if no books found */}
+      {filteredBooks.length === 0 ? (
+        <Box sx={{ textAlign: "center", width: "100%" }}>
+          <Typography variant="h6">No books found</Typography>
+        </Box>
+      ) : (
+        <Grid container spacing={3}>
+          {filteredBooks.map((book) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={book.id}>
+              <BookItem book={book} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </Box>
   );
 };
